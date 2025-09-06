@@ -1,58 +1,57 @@
-namespace: <namespace>
-environment: <environment>
-deploymentName: <deployment-name>
-replicaCount: <replica-count>
+namespace: auth-service-dev
+environment: local
+deploymentName: auth-service-dev
+replicaCount: 1
 image:
-  repository: <repository>
-  tag: <tag>
+  repository: auth-service-dev
+  tag: "0.0.1"
 service:
-  port: <service-port>
-configMapName: <config-map-name>
-springServerPort: <spring-server-port>
+  port: 8080
+configMapName: "auth-service-config"
+springServerPort: 8080
 spring:
-  port: <spring-server-port>
+  port: 8080
   application:
-    name: <application-name>
+    name: "auth-service-dev"
   profiles:
-    active: <active-profile>
+    active: dev
   datasource:
-    url: <url>
-    username: <username>
-    password: <password>
+    url: "jdbc:postgresql://192.168.100.105:5432/my_local_db"
+    username: "admin"
+    password: "admin"
     driver:
-      className: <driver-class-name>
+      className: "org.postgresql.Driver"
   aws:
-    accountId: <aws-account-id>
-    region: <aws-region>
+    accountId: "036573225753"
+    region: "us-east-1"
     role:
-      arn: <aws-role-arn>
+      arn: "arn:aws:iam::{{ .Values.spring.aws.accountId }}:role/auth-service-developer-role"
     secret:
-      arn: <aws-secret-arn>
-    webIdentityTokenFile: <aws-web-identity-token-file>
+      arn: "arn:aws:secretsmanager:{{ .Values.spring.aws.region }}:{{ .Values.spring.aws.accountId }}:secret:/dev/auth-service-T1MUqr"
+    webIdentityTokenFile: "/var/run/secrets/eks.amazonaws.com/serviceaccount/token"
 
   jpa:
     hibernate:
-      ddlAuto: <ddl-auto>
-    showSql: <show-sql>
+      ddlAuto: "update"
+    showSql: true
     properties:
       hibernate:
-        dialect: <hibernate-dialect>
-    databasePlatform: <database-platform>
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+    databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
   management:
     endpoints:
       web:
         exposure:
-          include: <exposure-include>
+          include: "*"
   logging:
     level:
       com:
         auth:
-          service: <logging-level>
+          service: "debug"
   doc:
     api:
       docs:
-        path: <api-docs-path>
+        path: "/v1/api-docs"
     swagger:
-      uiPath: <swagger-ui-path>
-
+      uiPath: "/swagger-ui.html"
 

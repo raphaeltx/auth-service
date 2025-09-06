@@ -4,6 +4,7 @@ import com.auth_service.model.dto.LoginRequest;
 import com.auth_service.model.dto.TokenRefreshRequest;
 import com.auth_service.model.constants.SuccessMessages;
 import com.auth_service.model.response.ApiResponse;
+import com.auth_service.model.response.AuthResponse;
 import com.auth_service.service.auth.AuthService;
 import com.auth_service.common.util.api_response.ApiResponseUtil;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,9 @@ public class AuthControllerImpl implements AuthController {
 
 	@Override
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<String>> login(@RequestBody LoginRequest loginRequest) {
-		String token = authService.authenticate(loginRequest.getIdentifier(), loginRequest.getPassword());
-		return ResponseEntity.ok(ApiResponseUtil.createSuccessResponse(SuccessMessages.LOGIN_SUCCESSFUL, token));
+	public ResponseEntity<ApiResponse<AuthResponse>> login(@RequestBody LoginRequest loginRequest) {
+		AuthResponse authResponse = authService.authenticate(loginRequest.getIdentifier(), loginRequest.getPassword());
+		return ResponseEntity.ok(ApiResponseUtil.createSuccessResponse(SuccessMessages.LOGIN_SUCCESSFUL, authResponse));
 	}
 
 	@Override

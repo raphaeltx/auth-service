@@ -1,5 +1,7 @@
 package com.auth_service.service.auth;
 
+import com.auth_service.model.response.AuthResponse;
+
 /**
  * AuthService interface. Contains methods for authenticating and refreshing JWT tokens.
  */
@@ -11,7 +13,7 @@ public interface AuthService {
 	 * @param password the user's password
 	 * @return a JWT token
 	 */
-	String authenticate(String identifier, String password);
+	AuthResponse authenticate(String identifier, String password);
 
 	/**
 	 * Refreshes the JWT token using a refresh token.

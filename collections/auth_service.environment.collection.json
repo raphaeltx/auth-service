@@ -1,0 +1,5 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "jwt_token": "",
+  "refresh_token": ""
+}

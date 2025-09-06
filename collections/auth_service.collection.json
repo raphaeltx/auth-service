@@ -1,0 +1,139 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-10-10T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "fld_1",
+      "parentId": null,
+      "name": "Auth Service",
+      "description": "",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_1",
+      "parentId": "fld_1",
+      "name": "Login",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"identifier\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "_type": "request"
+    },
+    {
+      "_id": "req_2",
+      "parentId": "fld_1",
+      "name": "Refresh Token",
+      "url": "{{baseUrl}}/auth/refresh",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"refreshToken\": \"{{refresh_token}}\"\n}"
+      },
+      "_type": "request"
+    },
+    {
+      "_id": "req_3",
+      "parentId": "fld_1",
+      "name": "Health Check",
+      "url": "{{baseUrl}}/health",
+      "method": "GET",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{jwt_token}}"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_4",
+      "parentId": "fld_1",
+      "name": "Get All Users",
+      "url": "{{baseUrl}}/users",
+      "method": "GET",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{jwt_token}}"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_5",
+      "parentId": "fld_1",
+      "name": "Get User by ID",
+      "url": "{{baseUrl}}/users/:id",
+      "method": "GET",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{jwt_token}}"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_6",
+      "parentId": "fld_1",
+      "name": "Create User",
+      "url": "{{baseUrl}}/users",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"userName\": \"newuser\",\n  \"password\": \"newpassword123\",\n  \"person\": {\n    \"email\": \"newuser@example.com\"\n  }\n}"
+      },
+      "_type": "request"
+    },
+    {
+      "_id": "req_7",
+      "parentId": "fld_1",
+      "name": "Delete User by ID",
+      "url": "{{baseUrl}}/users/:id",
+      "method": "DELETE",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{jwt_token}}"
+        }
+      ],
+      "_type": "request"
+    },
+    {
+      "_id": "req_8",
+      "parentId": "fld_1",
+      "name": "Activate User",
+      "url": "{{baseUrl}}/users/:id/activate",
+      "method": "PUT",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{jwt_token}}"
+        }
+      ],
+      "_type": "request"
+    }
+  ]
+}
