@@ -3,6 +3,8 @@ package com.auth_service.controller.auth;
 import com.auth_service.model.dto.LoginRequest;
 import com.auth_service.model.dto.TokenRefreshRequest;
 import com.auth_service.model.response.ApiResponse;
+import com.auth_service.model.response.AuthResponse;
+import com.auth_service.service.auth.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -14,9 +16,9 @@ public interface AuthController {
 	/**
 	 * Authenticates a user and returns a JWT token.
 	 * @param loginRequest the login request containing the user's identifier and password
-	 * @return a ResponseEntity containing an ApiResponse with the JWT token
+	 * @return a ResponseEntity containing an ApiResponse with the AuthResponse
 	 */
-	ResponseEntity<ApiResponse<String>> login(@RequestBody LoginRequest loginRequest);
+	ResponseEntity<ApiResponse<AuthResponse>> login(@RequestBody LoginRequest loginRequest);
 
 	/**
 	 * Refreshes the JWT token using a refresh token.

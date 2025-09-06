@@ -50,16 +50,16 @@ auth-service/
 
 ## Requirements
 - Java 21
-- Maven 3.6+
+- Gradle 8.3+
 - Docker
 
 ## How to Run
 
-### Using Maven
+### Using Gradle
 1. Navigate to the project directory.
 2. Run the application:
    ```sh
-   mvn spring-boot:run
+   gradle bootRun
    ```
 
 ### Using Docker

@@ -3,6 +3,7 @@ package com.auth_service.service.auth;
 import com.auth_service.exception.InvalidCredentialsException;
 import com.auth_service.exception.UserNotFoundException;
 import com.auth_service.model.entity.User;
+import com.auth_service.model.response.AuthResponse;
 import com.auth_service.repository.UserRepository;
 import com.auth_service.common.util.jwt.JwtUtilImpl;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,10 +26,10 @@ public class AuthServiceImpl implements AuthService {
 		this.authenticationManager = authenticationManager;
 	}
 
-	public String authenticate(String identifier, String password) {
+	public AuthResponse authenticate(String identifier, String password) {
 		User user = findUserByIdentifier(identifier);
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(identifier, password));
-		return jwtUtil.generateToken(identifier, user.getRole());
+		return new AuthResponse(jwtUtil.generateToken(identifier, user.getRole()), user.getId());
 	}
 
 	public String refreshToken(String refreshToken, String userName) {
